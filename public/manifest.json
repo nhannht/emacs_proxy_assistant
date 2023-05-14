@@ -1,0 +1,47 @@
+{
+  "short_name": "Emacs Assistant",
+  "name": "Emacs Assistant - connect emacs org-mode to browser",
+  "description": "Try to solve the problem, how to connect the power of emacs with browser extension, need support of the server",
+  "author": "nhannht",
+  "manifest_version": 3,
+  "version": "0.0.0",
+  "action": {
+    "default_title": "Emacs assistant",
+    "default_popup": "popup/index.html"
+  },
+  "commands": {
+    "Ctrl+M": {
+      "suggested_key": {
+        "default": "Ctrl+M",
+        "mac": "Command+M"
+      },
+      "description": "Ctrl+M."
+    }
+
+  },
+  "background": {
+    "service_worker": "background/index.js",
+    "type": "module"
+  },
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "permissions": [
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content/index.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "options_ui": {
+    "page": "option/index.html",
+    "open_in_tab": true
+  }
+}
